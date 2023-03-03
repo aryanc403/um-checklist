@@ -1,5 +1,5 @@
 import * as React from "react";
-import { PROBLEM_DATAT, PROBLEMS_DATA } from "../data";
+import { PROBLEM_DATAT, PROBLEMS_DATA } from "../../data";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
