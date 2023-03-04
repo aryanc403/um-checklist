@@ -34,13 +34,7 @@ export const PROBLEMS_DATA_SCHEMA_V1 = "PROBLEMS_DATA_SCHEMA_V1";
 export const StorageContextProvider = ({
   children,
 }: React.PropsWithChildren<{}>) => {
-  const [storageProblemsData, setStorageProblemsData] = React.useState(() => {
-    // const storageItems = JSON.parse(
-    //   localStorage.getItem(PROBLEMS_DATA_SCHEMA_V1) || ""
-    // );
-    // return storageItems;
-    return {};
-  });
+  const [storageProblemsData, setStorageProblemsData] = React.useState({});
 
   const updateStorageProblemsData = React.useCallback(
     (data: StorageProblemsDataSchemaV1) => {
@@ -48,12 +42,20 @@ export const StorageContextProvider = ({
     },
     [setStorageProblemsData]
   );
-  // React.useEffect(() => {
-  //   localStorage.setItem(
-  //     PROBLEMS_DATA_SCHEMA_V1,
-  //     JSON.stringify(storageProblemsData)
-  //   );
-  // }, [storageProblemsData]);
+  React.useEffect(() => {
+    const items = JSON.parse(
+      localStorage.getItem(PROBLEMS_DATA_SCHEMA_V1) || ""
+    );
+    if (items) {
+      setStorageProblemsData(items);
+    }
+  }, []);
+  React.useEffect(() => {
+    localStorage.setItem(
+      PROBLEMS_DATA_SCHEMA_V1,
+      JSON.stringify(storageProblemsData)
+    );
+  }, [storageProblemsData]);
   return (
     <StorageContext.Provider
       value={{
