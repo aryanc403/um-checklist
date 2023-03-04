@@ -1,13 +1,18 @@
 import * as React from "react";
 
-export type ProblemStatus = boolean;
+export enum ProblemStatus {
+  UNSOLVED = "Unsolved",
+  SOLVED = "Solved",
+  TRYING = "Trying",
+  SKIP = "Skip",
+}
 
 export type StorageProblemObject = {
   status: ProblemStatus;
 };
 
 export const defaultProblemStorageData: StorageProblemObject = {
-  status: false,
+  status: ProblemStatus.UNSOLVED,
 };
 
 export type StorageProblemsDataSchemaV1 = {
@@ -16,36 +21,44 @@ export type StorageProblemsDataSchemaV1 = {
 
 export type StorageContextT = {
   storageProblemsData: StorageProblemsDataSchemaV1;
-  setStorageProblemsData: (data: StorageProblemsDataSchemaV1) => void;
+  updateStorageProblemsData: (data: StorageProblemsDataSchemaV1) => void;
 };
 
 export const StorageContext = React.createContext<StorageContextT>({
   storageProblemsData: {},
-  setStorageProblemsData: (v) => {},
+  updateStorageProblemsData: (v) => {},
 });
 
 export const PROBLEMS_DATA_SCHEMA_V1 = "PROBLEMS_DATA_SCHEMA_V1";
 
-export const ProblemContextProvider = ({
+export const StorageContextProvider = ({
   children,
 }: React.PropsWithChildren<{}>) => {
   const [storageProblemsData, setStorageProblemsData] = React.useState(() => {
-    const storageItems = JSON.parse(
-      localStorage.getItem(PROBLEMS_DATA_SCHEMA_V1) || ""
-    );
-    return storageItems;
+    // const storageItems = JSON.parse(
+    //   localStorage.getItem(PROBLEMS_DATA_SCHEMA_V1) || ""
+    // );
+    // return storageItems;
+    return {};
   });
-  React.useEffect(() => {
-    localStorage.setItem(
-      PROBLEMS_DATA_SCHEMA_V1,
-      JSON.stringify(storageProblemsData)
-    );
-  }, [storageProblemsData]);
+
+  const updateStorageProblemsData = React.useCallback(
+    (data: StorageProblemsDataSchemaV1) => {
+      setStorageProblemsData(data);
+    },
+    [setStorageProblemsData]
+  );
+  // React.useEffect(() => {
+  //   localStorage.setItem(
+  //     PROBLEMS_DATA_SCHEMA_V1,
+  //     JSON.stringify(storageProblemsData)
+  //   );
+  // }, [storageProblemsData]);
   return (
     <StorageContext.Provider
       value={{
         storageProblemsData,
-        setStorageProblemsData,
+        updateStorageProblemsData,
       }}
     >
       {children}
