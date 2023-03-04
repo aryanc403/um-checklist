@@ -32,28 +32,7 @@
   "eslintConfig": {
     "extends": [
       "react-app",
-      "react-app/jest",
-      "shared-config"
-    ],
-    "rules": {
-      "semi": [
-        "error",
-        "always"
-      ],
-      "quotes": [
-        "error",
-        "double"
-      ]
-    },
-    "overrides": [
-      {
-        "files": [
-          "**/*.ts?(x)"
-        ],
-        "rules": {
-          "additional-typescript-only-rule": "warn"
-        }
-      }
+      "react-app/jest"
     ]
   },
   "browserslist": {

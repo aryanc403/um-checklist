@@ -1,12 +1,12 @@
-import * as React from 'react';
-import { PROBLEM_DATAT, PROBLEMS_DATA } from '../../data';
+import * as React from "react";
+import { PROBLEM_DATAT, PROBLEMS_DATA } from "../../data";
 import {
   StorageContext,
   StorageProblemObject,
   ProblemStatus,
   defaultProblemStorageData,
-} from '../storage/Context';
-import _ from 'lodash';
+} from "../storage/Context";
+import _ from "lodash";
 
 export type problemsDataT = PROBLEM_DATAT &
   StorageProblemObject & {
@@ -30,9 +30,8 @@ export const ProblemContext = React.createContext<ProblemContextT>({
 export const ProblemContextProvider = ({
   children,
 }: React.PropsWithChildren<{}>) => {
-  const { storageProblemsData, updateStorageProblemsData } = React.useContext(
-    StorageContext
-  );
+  const { storageProblemsData, updateStorageProblemsData } =
+    React.useContext(StorageContext);
 
   const setProblemStatus = React.useCallback(
     (uuid: string, status: ProblemStatus) => {
