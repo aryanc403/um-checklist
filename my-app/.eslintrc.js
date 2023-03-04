@@ -1,73 +1,25 @@
 module.exports = {
-    env: {
-        browser: true,
-        es6: true,
+  env: {
+    browser: true,
+    node: true,
+  },
+  extends: "eslint:recommended",
+  parserOptions: {
+    ecmaFeatures: {
+      jsx: true,
     },
-    extends: [
-        "eslint:recommended",
-        "airbnb/hooks",
-        "airbnb-typescript",
-        "plugin:react/recommended",
-        "plugin:react/jsx-runtime",
-        "plugin:@typescript-eslint/recommended",
-        "plugin:@typescript-eslint/recommended-requiring-type-checking",
-        "plugin:prettier/recommended",
-        "plugin:import/recommended",
-    ],
-    // Specifying Parser
-    parser: "@typescript-eslint/parser",
-    parserOptions: {
-        ecmaFeatures: {
-            jsx: true,
-        },
-        ecmaVersion: "latest",
-        sourceType: "module",
-        tsconfigRootDir: __dirname,
-        project: ["./tsconfig.json"],
-    },
-    // Configuring third-party plugins
-    plugins: ["react", "@typescript-eslint"],
-    // Resolve imports
-    settings: {
-        "import/resolver": {
-            typescript: {
-                project: "./tsconfig.json",
-            },
-        },
-        react: {
-            version: "18.x",
-        },
-    },
-    rules: {
-        "linebreak-style": "off",
-        // Configure prettier
-        "prettier/prettier": [
-            "error",
-            {
-                printWidth: 80,
-                endOfLine: "lf",
-                singleQuote: true,
-                tabWidth: 4,
-                indentStyle: "space",
-                useTabs: true,
-                trailingComma: "es5",
-            },
-        ],
-        // Disallow the `any` type.
-        "@typescript-eslint/no-explicit-any": "warn",
-        "@typescript-eslint/ban-types": [
-            "error",
-            {
-                extendDefaults: true,
-                types: {
-                    "{}": false,
-                },
-            },
-        ],
-        "react-hooks/exhaustive-deps": "off",
-        // Enforce the use of the shorthand syntax.
-        "object-shorthand": "error",
-        "no-console": "warn",
-        "@typescript-eslint/naming-convention": "warn",
-    },
+    ecmaVersion: 2018,
+  },
+  plugins: ["react"],
+  rules: {
+    indent: ["error", 2],
+    "linebreak-style": ["error", "unix"],
+    quotes: ["error", "single"],
+    semi: ["error", "always"],
+  },
+  parser: "babel-eslint",
+  parserOptions: {
+    sourceType: "module",
+    allowImportExportEverywhere: true,
+  },
 };
