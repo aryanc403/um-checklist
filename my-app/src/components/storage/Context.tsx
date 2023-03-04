@@ -29,7 +29,8 @@ export const StorageContext = React.createContext<StorageContextT>({
   updateStorageProblemsData: (v) => {},
 });
 
-export const PROBLEMS_DATA_SCHEMA_V1 = "PROBLEMS_DATA_SCHEMA_V1";
+export const STORAGE_PROBLEM_DATA_SCHEMA_V1 = "STORAGE_PROBLEM_DATA_SCHEMA_V1";
+export const PROBLEM_DATA_PATH = "PROBLEM_DATA_PATH";
 
 export const StorageContextProvider = ({
   children,
@@ -43,16 +44,14 @@ export const StorageContextProvider = ({
     [setStorageProblemsData]
   );
   React.useEffect(() => {
-    const items = JSON.parse(
-      localStorage.getItem(PROBLEMS_DATA_SCHEMA_V1) || ""
-    );
+    const items = JSON.parse(localStorage.getItem(PROBLEM_DATA_PATH) || "{}");
     if (items) {
       setStorageProblemsData(items);
     }
   }, []);
   React.useEffect(() => {
     localStorage.setItem(
-      PROBLEMS_DATA_SCHEMA_V1,
+      PROBLEM_DATA_PATH,
       JSON.stringify(storageProblemsData)
     );
   }, [storageProblemsData]);
