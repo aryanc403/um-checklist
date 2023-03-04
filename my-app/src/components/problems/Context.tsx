@@ -1,5 +1,5 @@
 import * as React from "react";
-import { PROBLEM_DATAT, PROBLEMS_DATA } from "../../data";
+import { StaticProblemDataT, AllProblemsDictionary } from "../../data";
 import {
   StorageContext,
   StorageProblemObject,
@@ -8,10 +8,7 @@ import {
 } from "../storage/Context";
 import _ from "lodash";
 
-export type problemsDataT = PROBLEM_DATAT &
-  StorageProblemObject & {
-    uuid: string;
-  };
+export type problemsDataT = StaticProblemDataT & StorageProblemObject;
 
 export type problemsDataDictionaryT = {
   [key: string]: problemsDataT;
@@ -49,22 +46,21 @@ export const ProblemContextProvider = ({
   const problemsData = React.useMemo(
     () =>
       _.transform(
-        Object.keys(PROBLEMS_DATA),
+        Object.keys(AllProblemsDictionary),
         (result: problemsDataDictionaryT, uuid: string) => {
-          const data = _.cloneDeep(PROBLEMS_DATA[uuid]);
+          const data = _.cloneDeep(AllProblemsDictionary[uuid]);
           const currentData = storageProblemsData[uuid]
-            ? storageProblemsData[uuid]
+            ? _.cloneDeep(storageProblemsData[uuid])
             : _.cloneDeep(defaultProblemStorageData);
           result[uuid] = {
             ...data,
             ...currentData,
-            uuid,
           };
           return result;
         },
         {}
       ),
-    [PROBLEMS_DATA, storageProblemsData, defaultProblemStorageData]
+    [AllProblemsDictionary, storageProblemsData, defaultProblemStorageData]
   );
 
   return (
