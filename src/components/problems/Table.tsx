@@ -7,6 +7,7 @@ import {
   TableHead,
   TableRow,
   Paper,
+  Tooltip,
 } from "@mui/material";
 import { ProblemContext } from "./Context";
 import { ProblemRow } from "./Problem";
@@ -21,7 +22,14 @@ export const ProblemsTable: React.FunctionComponent<{}> = () => {
           <TableRow>
             <TableCell>Episode</TableCell>
             <TableCell align="right">Name</TableCell>
-            <TableCell align="right">Status</TableCell>
+            <TableCell align="right">
+              <Tooltip
+                title="Click on problem status to change"
+                placement="top"
+              >
+                <div>Status</div>
+              </Tooltip>
+            </TableCell>
             <TableCell align="right">Link</TableCell>
             <TableCell align="right">Level</TableCell>
             <TableCell align="right">CF/Kenkoooo</TableCell>
