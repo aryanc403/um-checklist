@@ -2,7 +2,7 @@ import * as React from "react";
 import { deepPurple } from "@mui/material/colors";
 import { Link, Typography, Box, AppBar } from "@mui/material";
 
-export const UMAppBar: React.FunctionComponent<{}> = () => (
+export const Header: React.FunctionComponent<{}> = () => (
   <>
     <Box>
       <AppBar position="static" sx={{ backgroundColor: deepPurple[200] }}>
@@ -25,4 +25,4 @@ export const UMAppBar: React.FunctionComponent<{}> = () => (
   </>
 );
 
-export default UMAppBar;
+export default Header;
