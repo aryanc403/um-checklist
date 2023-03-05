@@ -5,6 +5,7 @@ export enum ProblemStatus {
   SOLVED = "Solved",
   TRYING = "Trying",
   SKIPPED = "Skipped",
+  MINDSOLVED = "Mindsolved",
 }
 
 export type StorageProblemObject = {

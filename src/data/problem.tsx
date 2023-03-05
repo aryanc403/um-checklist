@@ -60,7 +60,7 @@ export const StaticProblemData: StaticProblemDataT[] = [
     name: "BBQ Hard",
     link: "https://atcoder.jp/contests/agc001/tasks/agc001_e",
     difficulty: ProblemDifficulty.VeryHard,
-    rating: 6000,
+    rating: 3800,
     postedDate: "01/03/2023",
     videoLink: "",
     videoDate: "11/03/2023",

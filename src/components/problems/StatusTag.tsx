@@ -7,13 +7,15 @@ const statusTagColors = Object.freeze({
   [ProblemStatus.UNSOLVED]: indigo[500],
   [ProblemStatus.TRYING]: blue[500],
   [ProblemStatus.SOLVED]: green[500],
+  [ProblemStatus.MINDSOLVED]: green[500],
   [ProblemStatus.SKIPPED]: blueGrey[500],
 });
 
 const statusCycle = Object.freeze({
   [ProblemStatus.UNSOLVED]: ProblemStatus.TRYING,
   [ProblemStatus.TRYING]: ProblemStatus.SOLVED,
-  [ProblemStatus.SOLVED]: ProblemStatus.SKIPPED,
+  [ProblemStatus.SOLVED]: ProblemStatus.MINDSOLVED,
+  [ProblemStatus.MINDSOLVED]: ProblemStatus.SKIPPED,
   [ProblemStatus.SKIPPED]: ProblemStatus.UNSOLVED,
 });
 

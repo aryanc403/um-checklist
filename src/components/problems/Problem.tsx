@@ -10,6 +10,7 @@ const backgroundColors = Object.freeze({
   [ProblemStatus.UNSOLVED]: indigo[50],
   [ProblemStatus.TRYING]: blue[100],
   [ProblemStatus.SOLVED]: green.A200,
+  [ProblemStatus.MINDSOLVED]: green.A200,
   [ProblemStatus.SKIPPED]: blueGrey.A200,
 });
 
