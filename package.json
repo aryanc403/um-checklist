@@ -2,7 +2,7 @@
   "name": "um-checklist",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://app.aryanc403.com/um-checklist",
+  "homepage": "https://um-checklist.aryanc403.com",
   "dependencies": {
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
@@ -26,7 +26,7 @@
   },
   "scripts": {
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
+    "deploy": "gh-pages -d build --repo git@github.com:aryanc-403/um-checklist.git",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
