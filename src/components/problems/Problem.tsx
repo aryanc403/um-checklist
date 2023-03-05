@@ -2,7 +2,9 @@ import * as React from "react";
 import { problemsDataT, ProblemContext } from "./Context";
 import { ProblemStatus } from "../storage/Context";
 import { green, blue, blueGrey, indigo } from "@mui/material/colors";
-import { TableRow, TableCell, Button, Link, Badge } from "@mui/material";
+import { TableRow, TableCell, Link } from "@mui/material";
+import { StatusTag } from "./StatusTag";
+import { DifficultyTag } from "./DifficultyTag";
 
 const backgroundColors = Object.freeze({
   [ProblemStatus.UNSOLVED]: indigo[50],
@@ -11,50 +13,11 @@ const backgroundColors = Object.freeze({
   [ProblemStatus.SKIPPED]: blueGrey.A200,
 });
 
-const statusTagColors = Object.freeze({
-  [ProblemStatus.UNSOLVED]: indigo[500],
-  [ProblemStatus.TRYING]: blue[500],
-  [ProblemStatus.SOLVED]: green[500],
-  [ProblemStatus.SKIPPED]: blueGrey[500],
-});
-
-const statusCycle = Object.freeze({
-  [ProblemStatus.UNSOLVED]: ProblemStatus.TRYING,
-  [ProblemStatus.TRYING]: ProblemStatus.SOLVED,
-  [ProblemStatus.SOLVED]: ProblemStatus.SKIPPED,
-  [ProblemStatus.SKIPPED]: ProblemStatus.UNSOLVED,
-});
-
-const StatusTag: React.FunctionComponent<{
-  status: ProblemStatus;
-  onStatusChange: (arg0: ProblemStatus) => void;
-}> = ({ status, onStatusChange }) => {
-  return (
-    <Button
-      onClick={() => {
-        onStatusChange(statusCycle[status]);
-      }}
-    >
-      <Badge
-        badgeContent={status}
-        sx={{
-          "& .MuiBadge-badge": {
-            color: "white",
-            backgroundColor: statusTagColors[status],
-          },
-          display: "flex",
-          alignItems: "stretch",
-        }}
-      />
-    </Button>
-  );
-};
-
 export const ProblemRow: React.FunctionComponent<problemsDataT> = ({
   episode,
   name,
   link,
-  level,
+  difficulty,
   rating,
   postedDate,
   videoLink,
@@ -96,7 +59,7 @@ export const ProblemRow: React.FunctionComponent<problemsDataT> = ({
         </Link>
       </TableCell>
       <TableCell align="right" key="level">
-        {level}
+        <DifficultyTag difficulty={difficulty} />
       </TableCell>
       <TableCell align="right" key="rating">
         {rating}

@@ -1,10 +1,19 @@
 import _ from "lodash";
 
+export enum ProblemDifficulty {
+  VeryEasy = "very-easy",
+  Easy = "easy",
+  EasyMedium = "easy-med",
+  Medium = "medium",
+  Hard = "hard",
+  VeryHard = "very-hard",
+}
+
 export type StaticProblemDataT = {
   episode: number;
   name: string;
   link: string;
-  level: string;
+  difficulty: ProblemDifficulty;
   rating: number;
   postedDate: string;
   videoLink: string;
@@ -17,7 +26,7 @@ export const StaticProblemData: StaticProblemDataT[] = [
     episode: 1,
     name: "Iroha and a Grid",
     link: "https://atcoder.jp/contests/abc042/tasks/arc058_b",
-    level: "easy",
+    difficulty: ProblemDifficulty.Easy,
     rating: 1905,
     postedDate: "01/03/2023",
     videoLink: "",
@@ -28,7 +37,7 @@ export const StaticProblemData: StaticProblemDataT[] = [
     episode: 2,
     name: "Grid and Integers",
     link: "https://atcoder.jp/contests/code-festival-2016-quala/tasks/codefestival_2016_qualA_d",
-    level: "medium",
+    difficulty: ProblemDifficulty.Medium,
     rating: 2684,
     postedDate: "01/03/2023",
     videoLink: "",
@@ -39,7 +48,7 @@ export const StaticProblemData: StaticProblemDataT[] = [
     episode: 3,
     name: "Iroha Loves Strings",
     link: "https://atcoder.jp/contests/arc058/tasks/arc058_d",
-    level: "easy",
+    difficulty: ProblemDifficulty.Hard,
     rating: 3678,
     postedDate: "01/03/2023",
     videoLink: "",
@@ -50,7 +59,7 @@ export const StaticProblemData: StaticProblemDataT[] = [
     episode: 4,
     name: "BBQ Hard",
     link: "https://atcoder.jp/contests/agc001/tasks/agc001_e",
-    level: "very-hard",
+    difficulty: ProblemDifficulty.VeryHard,
     rating: 6000,
     postedDate: "01/03/2023",
     videoLink: "",
@@ -61,7 +70,7 @@ export const StaticProblemData: StaticProblemDataT[] = [
     episode: 5,
     name: "Digit Sum",
     link: "https://atcoder.jp/contests/arc060/tasks/arc060_b",
-    level: "easy-medium",
+    difficulty: ProblemDifficulty.EasyMedium,
     rating: 2261,
     postedDate: "01/03/2023",
     videoLink: "",
@@ -72,7 +81,7 @@ export const StaticProblemData: StaticProblemDataT[] = [
     episode: 6,
     name: "Tak and Cards",
     link: "https://atcoder.jp/contests/arc060/tasks/arc060_a",
-    level: "very-easy",
+    difficulty: ProblemDifficulty.VeryEasy,
     rating: 1583,
     postedDate: "01/03/2023",
     videoLink: "",
@@ -83,7 +92,7 @@ export const StaticProblemData: StaticProblemDataT[] = [
     episode: 7,
     name: "Best Representation",
     link: "https://atcoder.jp/contests/arc060/tasks/arc060_d",
-    level: "medium",
+    difficulty: ProblemDifficulty.Medium,
     rating: 2804,
     postedDate: "01/03/2023",
     videoLink: "",
