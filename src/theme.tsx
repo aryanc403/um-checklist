@@ -1,6 +1,6 @@
 import * as React from "react";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { red, deepPurple } from "@mui/material/colors";
+import { lightBlue } from "@mui/material/colors";
 
 // A custom theme for this app
 const theme = createTheme({
@@ -10,6 +10,16 @@ const theme = createTheme({
     },
     secondary: {
       main: "#ffa500",
+    },
+    action: {
+      active: lightBlue[200],
+      activatedOpacity: 1,
+      hover: lightBlue[100],
+      hoverOpacity: 0.7,
+      focus: lightBlue[600],
+      focusOpacity: 1,
+      selected: lightBlue[300],
+      selectedOpacity: 1,
     },
   },
 });

@@ -10,13 +10,14 @@ import {
 } from "@mui/material";
 import { ProblemContext } from "./Context";
 import { ProblemRow } from "./Problem";
+import { cyan } from "@mui/material/colors";
 
 export const ProblemsTable: React.FunctionComponent<{}> = () => {
   const { problemsData } = React.useContext(ProblemContext);
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
-        <TableHead>
+        <TableHead sx={{ backgroundColor: cyan.A400 }}>
           <TableRow>
             <TableCell>Episode</TableCell>
             <TableCell align="right">Name</TableCell>
@@ -30,9 +31,11 @@ export const ProblemsTable: React.FunctionComponent<{}> = () => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {Object.entries(problemsData).map(([uuid, problemData]) => (
-            <ProblemRow {...problemData} key={uuid} />
-          ))}
+          {Object.entries(problemsData)
+            .sort(([, { episode: x }], [, { episode: y }]) => y - x)
+            .map(([uuid, problemData]) => (
+              <ProblemRow {...problemData} key={uuid} />
+            ))}
         </TableBody>
       </Table>
     </TableContainer>

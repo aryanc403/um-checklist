@@ -1,12 +1,9 @@
 import * as React from "react";
-import Typography from "@mui/material/Typography";
+import { Typography, Box } from "@mui/material";
 import { UM } from "./components/UM";
 
 const App: React.FunctionComponent<{}> = () => (
   <>
-    <Typography variant="h4" component="h1" gutterBottom>
-      Um Checklist
-    </Typography>
     <UM />
   </>
 );

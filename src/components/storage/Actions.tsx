@@ -7,7 +7,7 @@ import Modal from "@mui/material/Modal";
 import ClearIcon from "@mui/icons-material/Clear";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import CloudDownloadIcon from "@mui/icons-material/CloudDownload";
-
+import { deepPurple } from "@mui/material/colors";
 const style = {
   position: "absolute" as "absolute",
   top: "50%",
@@ -182,6 +182,7 @@ export const Actions: React.FunctionComponent<{}> = ({}) => {
       sx={{
         display: "flex",
         flexDirection: "row-reverse",
+        backgroundColor: deepPurple[200],
       }}
     >
       <ResetProgress />

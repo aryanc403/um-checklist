@@ -1,9 +1,54 @@
 import * as React from "react";
-import { problemsDataT } from "./Context";
+import { problemsDataT, ProblemContext } from "./Context";
 import { ProblemStatus } from "../storage/Context";
 import { green, blue, blueGrey, indigo } from "@mui/material/colors";
-import { ProblemContext } from "./Context";
-import { TableRow, TableCell, Button } from "@mui/material";
+import { TableRow, TableCell, Button, Link, Badge } from "@mui/material";
+
+const backgroundColors = Object.freeze({
+  [ProblemStatus.UNSOLVED]: indigo[50],
+  [ProblemStatus.TRYING]: blue[100],
+  [ProblemStatus.SOLVED]: green.A200,
+  [ProblemStatus.SKIPPED]: blueGrey.A200,
+});
+
+const statusTagColors = Object.freeze({
+  [ProblemStatus.UNSOLVED]: indigo[500],
+  [ProblemStatus.TRYING]: blue[500],
+  [ProblemStatus.SOLVED]: green[500],
+  [ProblemStatus.SKIPPED]: blueGrey[500],
+});
+
+const statusCycle = Object.freeze({
+  [ProblemStatus.UNSOLVED]: ProblemStatus.TRYING,
+  [ProblemStatus.TRYING]: ProblemStatus.SOLVED,
+  [ProblemStatus.SOLVED]: ProblemStatus.SKIPPED,
+  [ProblemStatus.SKIPPED]: ProblemStatus.UNSOLVED,
+});
+
+const StatusTag: React.FunctionComponent<{
+  status: ProblemStatus;
+  onStatusChange: (arg0: ProblemStatus) => void;
+}> = ({ status, onStatusChange }) => {
+  return (
+    <Button
+      onClick={() => {
+        onStatusChange(statusCycle[status]);
+      }}
+    >
+      <Badge
+        badgeContent={status}
+        sx={{
+          "& .MuiBadge-badge": {
+            color: "white",
+            backgroundColor: statusTagColors[status],
+          },
+          display: "flex",
+          alignItems: "stretch",
+        }}
+      />
+    </Button>
+  );
+};
 
 export const ProblemRow: React.FunctionComponent<problemsDataT> = ({
   episode,
@@ -19,44 +64,11 @@ export const ProblemRow: React.FunctionComponent<problemsDataT> = ({
 }) => {
   const { setProblemStatus } = React.useContext(ProblemContext);
 
-  const backgroundColor = React.useMemo(() => {
-    switch (status) {
-      case ProblemStatus.SOLVED:
-        return green.A200;
-      case ProblemStatus.TRYING:
-        return blue.A100;
-      case ProblemStatus.UNSOLVED:
-        return indigo[50];
-      case ProblemStatus.SKIP:
-        return blueGrey.A200;
-    }
-  }, [status]);
-
-  const getNewStatus = React.useCallback(
-    (status: ProblemStatus): ProblemStatus => {
-      switch (status) {
-        case ProblemStatus.UNSOLVED:
-          return ProblemStatus.TRYING;
-        case ProblemStatus.TRYING:
-          return ProblemStatus.SOLVED;
-        case ProblemStatus.SOLVED:
-          return ProblemStatus.SKIP;
-        case ProblemStatus.SKIP:
-          return ProblemStatus.UNSOLVED;
-      }
-    },
-    []
-  );
-
-  const onStatusChange = () => {
-    setProblemStatus(uuid, getNewStatus(status));
-  };
-
   return (
     <TableRow
       key={uuid}
       sx={{
-        backgroundColor,
+        backgroundColor: backgroundColors[status],
       }}
     >
       <TableCell component="th" scope="row" key="episode">
@@ -66,18 +78,22 @@ export const ProblemRow: React.FunctionComponent<problemsDataT> = ({
         {name}
       </TableCell>
       <TableCell align="right" key="status">
-        <Button
-          onClick={() => {
-            onStatusChange();
+        <StatusTag
+          status={status}
+          onStatusChange={(newStatus: ProblemStatus) => {
+            setProblemStatus(uuid, newStatus);
           }}
-        >
-          {status}
-        </Button>
+        />
       </TableCell>
       <TableCell align="right" key="link">
-        <a href={link} target="_blank" rel="noreferrer noopener">
+        <Link
+          href={link}
+          target="_blank"
+          rel="noreferrer noopener"
+          color="inherit"
+        >
           {link}
-        </a>
+        </Link>
       </TableCell>
       <TableCell align="right" key="level">
         {level}
@@ -89,9 +105,14 @@ export const ProblemRow: React.FunctionComponent<problemsDataT> = ({
         {postedDate}
       </TableCell>
       <TableCell align="right" key="videoLink">
-        <a href={videoLink} target="_blank" rel="noreferrer noopener">
+        <Link
+          href={videoLink}
+          target="_blank"
+          rel="noreferrer noopener"
+          color="inherit"
+        >
           {videoLink}
-        </a>
+        </Link>
       </TableCell>
       <TableCell align="right" key="videoDate">
         {videoDate}
