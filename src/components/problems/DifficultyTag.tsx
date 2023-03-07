@@ -1,6 +1,13 @@
 import * as React from "react";
 import { ProblemDifficulty } from "../../data";
-import { green, brown, grey, purple, lightBlue } from "@mui/material/colors";
+import {
+  green,
+  brown,
+  grey,
+  purple,
+  lightBlue,
+  orange,
+} from "@mui/material/colors";
 import { Badge } from "@mui/material";
 
 const difficultyTagColors = Object.freeze({
@@ -8,6 +15,7 @@ const difficultyTagColors = Object.freeze({
   [ProblemDifficulty.Easy]: green.A700,
   [ProblemDifficulty.EasyMedium]: lightBlue.A700,
   [ProblemDifficulty.Medium]: purple[700],
+  [ProblemDifficulty.MediumHard]: orange.A400,
   [ProblemDifficulty.Hard]: brown.A400,
   [ProblemDifficulty.VeryHard]: brown[900],
 });
