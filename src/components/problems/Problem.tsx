@@ -39,7 +39,14 @@ export const ProblemRow: React.FunctionComponent<problemsDataT> = ({
         {episode}
       </TableCell>
       <TableCell align="right" key="name">
-        {name}
+        <Link
+          href={link}
+          target="_blank"
+          rel="noreferrer noopener"
+          color="inherit"
+        >
+          {name}
+        </Link>
       </TableCell>
       <TableCell align="right" key="status">
         <StatusTag
@@ -48,16 +55,6 @@ export const ProblemRow: React.FunctionComponent<problemsDataT> = ({
             setProblemStatus(uuid, newStatus);
           }}
         />
-      </TableCell>
-      <TableCell align="right" key="link">
-        <Link
-          href={link}
-          target="_blank"
-          rel="noreferrer noopener"
-          color="inherit"
-        >
-          {link}
-        </Link>
       </TableCell>
       <TableCell align="right" key="level">
         <DifficultyTag difficulty={difficulty} />
@@ -68,6 +65,9 @@ export const ProblemRow: React.FunctionComponent<problemsDataT> = ({
       <TableCell align="right" key="postedDate">
         {postedDate}
       </TableCell>
+      <TableCell align="right" key="videoDate">
+        {videoDate}
+      </TableCell>
       <TableCell align="right" key="videoLink">
         <Link
           href={videoLink}
@@ -77,9 +77,6 @@ export const ProblemRow: React.FunctionComponent<problemsDataT> = ({
         >
           {videoLink}
         </Link>
-      </TableCell>
-      <TableCell align="right" key="videoDate">
-        {videoDate}
       </TableCell>
     </TableRow>
   );

@@ -30,12 +30,11 @@ export const ProblemsTable: React.FunctionComponent<{}> = () => {
                 <div>Status</div>
               </Tooltip>
             </TableCell>
-            <TableCell align="right">Link</TableCell>
             <TableCell align="right">Level</TableCell>
             <TableCell align="right">CF/Kenkoooo</TableCell>
             <TableCell align="right">Posted</TableCell>
-            <TableCell align="right">Video</TableCell>
             <TableCell align="right">Video Posted</TableCell>
+            <TableCell align="right">Video</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
